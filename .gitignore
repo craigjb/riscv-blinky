@@ -38,3 +38,8 @@ bin/
 
 simWorkspace/
 tmp/
+
+# symbiflow
+/*.bit
+/*.svf
+/*.config
