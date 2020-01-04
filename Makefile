@@ -8,6 +8,9 @@ FLASH_FREQ=38.8 #MHz
 
 all: $(PROJ).svf
 
+%.v: .ALWAYS
+	sbt run
+
 %.json: %.v
 	yosys -p "synth_ecp5 -json $@" $<
 
@@ -31,3 +34,4 @@ dfu_flash: $(PROJ).bit
 
 .PHONY: prog clean
 .PRECIOUS: ${PROJ}.json ${PROJ}_out.config
+.ALWAYS:
