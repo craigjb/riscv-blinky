@@ -10,3 +10,7 @@ libraryDependencies ++= Seq(
 )
 
 fork := true
+
+lazy val root = Project("root", file("."))
+    .dependsOn(vexRiscV)
+lazy val vexRiscV = RootProject(uri("https://github.com/SpinalHDL/VexRiscv.git"))
