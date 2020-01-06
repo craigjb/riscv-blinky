@@ -6,15 +6,16 @@ FLASH_MODE=qspi
 #Image read freq, in MHz: 2.4, 4.8, 9.7, 19.4, 38.8, 62.0
 FLASH_FREQ=38.8 #MHz
 SPINAL_FILES=$(shell find ./src -name "*.scala")
+RUST_FILES=$(shell find ./firmware/src -name "*.rs") firmware/Cargo.toml firmware/memory.x firmware/build.rs
 
 all: $(PROJ).svf
 
-firmware/blink.bin: firmware/blink.s
-	make -C firmware
+firmware: $(RUST_FILES)
+	cd firmware; cargo build --release; cargo make objcopy
 
-%.scala: firmware/blink.bin
+spinal: firmware $(SPINAL_FILES)
 
-%.v: $(SPINAL_FILES)
+%.v: spinal
 	sbt run
 
 %.json: %.v
