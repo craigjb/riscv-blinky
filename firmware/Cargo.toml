@@ -1,0 +1,14 @@
+[package]
+name = "blinky"
+version = "0.1.0"
+authors = ["Craig Bishop <craig@craigjb.com>"]
+edition = "2018"
+
+[dependencies]
+riscv-rt = "0.6.1"
+panic-halt = "0.2.0"
+
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true # symbols are nice and they don't increase the size on Flash
+lto = true # better optimizations

@@ -1,0 +1,14 @@
+[tasks.strip]
+command = "riscv64-unknown-linux-gnu-strip"
+args= [
+    "target/riscv32imac-unknown-none-elf/release/blinky",
+]
+
+[tasks.objcopy]
+command = "riscv64-unknown-linux-gnu-objcopy"
+args= [
+    "-O", "binary",
+    "target/riscv32imac-unknown-none-elf/release/blinky",
+    "target/riscv32imac-unknown-none-elf/release/blinky.bin"
+]
+dependencies = ["strip"]

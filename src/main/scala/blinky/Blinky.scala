@@ -21,6 +21,7 @@ class Blinky extends Component {
         new PcManagerSimplePlugin(0x00000000l, false),
         new IBusSimplePlugin(
             resetVector = 0x00000000l,
+            compressedGen = true,
             cmdForkOnSecondStage = true,
             cmdForkPersistence  = true
         ),
@@ -36,6 +37,8 @@ class Blinky extends Component {
             zeroBoot = true
         ),
         new IntAluPlugin,
+        new MulPlugin,
+        new DivPlugin,
         new SrcPlugin(
             separatedAddSub = false,
             executeInsertion = false
@@ -65,11 +68,11 @@ class Blinky extends Component {
             mepcAccess     = CsrAccess.READ_WRITE,
             mscratchGen    = false,
             mcauseAccess   = CsrAccess.READ_ONLY,
-            mbadaddrAccess = CsrAccess.READ_ONLY,
+            mbadaddrAccess = CsrAccess.READ_WRITE,
             mcycleAccess   = CsrAccess.NONE,
             minstretAccess = CsrAccess.NONE,
             ecallGen       = false,
-            wfiGenAsWait         = false,
+            wfiGenAsWait   = false,
             ucycleAccess   = CsrAccess.NONE
           )
         )
@@ -160,7 +163,7 @@ object BlinkyVerilog {
     }
 
     def main(args: Array[String]) {
-        val program = loadProgram("firmware/blink.bin", 1024)
+        val program = loadProgram("firmware/target/riscv32imac-unknown-none-elf/release/blinky.bin", 1024)
 
         BlinkySpinalConfig.generateVerilog({
             val top = new Blinky
