@@ -1,6 +1,5 @@
 PROJ=Blinky
 CONSTR=Blinky.lpf
-TRELLIS=/usr/local/share/trellis
 #Image read mode: qspi, dual-spi, fast-read
 FLASH_MODE=qspi
 #Image read freq, in MHz: 2.4, 4.8, 9.7, 19.4, 38.8, 62.0
