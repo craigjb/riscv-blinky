@@ -9,8 +9,8 @@ class Blinky extends Component {
     }
 
     val externalClockDomain = ClockDomain.external(
-        "",
-        ClockDomainConfig(resetKind=BOOT)
+        "", // resulsts in a clk IO named "clk"
+        ClockDomainConfig(resetKind=BOOT) // does not generate a reset IO
     )
 
     new ClockingArea(externalClockDomain) {
