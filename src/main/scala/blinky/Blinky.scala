@@ -65,7 +65,7 @@ class Blinky extends Component {
             mepcAccess     = CsrAccess.READ_WRITE,
             mscratchGen    = false,
             mcauseAccess   = CsrAccess.READ_ONLY,
-            mbadaddrAccess = CsrAccess.READ_ONLY,
+            mbadaddrAccess = CsrAccess.READ_WRITE,
             mcycleAccess   = CsrAccess.NONE,
             minstretAccess = CsrAccess.NONE,
             ecallGen       = false,
